@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index</title>
+</head>
+<body>
+    <div class="box">
+        <input type="text" name="" id="search">
+        <p class="show">0000</p>
+        <button class="btn">change</button>
+    </div>
+    <div id="box">
+        <!-- <iframe src="http://a.com:2001/posta.html"></iframe> -->
+        <iframe src="http://b.com:2001/postb.html"></iframe>
+    </div>
+    <script>
+        function $(id) {
+            return document.querySelector(id)
+        }
+        // 原生 ajax
+        // $('.btn').addEventListener('click',function() {
+        //     const xhr = new XMLHttpRequest()
+        //     xhr.open("get", 'http://b.com:2001/change', true)
+        //     xhr.send()
+        //     xhr.onreadystatechange=function() {
+        //       if (xhr.readyState === 4 && xhr.status === 200) {
+        //           console.log(JSON.parse(xhr.responseText))
+        //           show(JSON.parse(xhr.responseText))
+        //       }
+        //     }
+        // })
+
+        // jsonp 方式
+        console.dir($('.btn'))
+        $('.btn').onclick = function () {
+            const tag = document.createElement('script')
+            tag.src="http://b.com:2001/jsonp?callback=show"
+            console.log(document.head)
+            document.head.appendChild(tag)
+            document.head.removeChild(tag)
+        }
+        function show(ttt) {
+            console.log(ttt, 'show : ttt')
+            $('.show').innerText = ttt.s.join()
+        }
+
+        // 百度联想词
+        function search(e) {
+            if (e.target.value) {
+                const script = document.createElement('script')
+                script.src = "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="
+                    + e.target.value + "&cb=show"
+                document.body.appendChild(script)
+                document.body.removeChild(script)
+            }
+        }
+        $('#search').addEventListener('focus', search, false)
+        $('#search').addEventListener('input', search, false)
+    </script>
+</body>
+</html>
