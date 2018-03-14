@@ -32,3 +32,4 @@ app.get('/jsonp', (req, res) => {
 
 
 app.listen(2001)
+console.log('server 已启动，localhost:2001')
