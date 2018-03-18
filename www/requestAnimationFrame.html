@@ -17,13 +17,17 @@
   <div id="demo"></div>
   <script>
     let a = 0;
+    let b = 10;
     const demo = document.getElementById('demo')
     function changeW() {
-      a += 10
-      demo.style.width = a + 'px'
-      if (a > 1000) {
-        a = 0
+      if (a === 1000) {
+        b = -10
       }
+      if (a === 0) {  
+        b = 10
+      }
+      a = a + b
+      demo.style.width = a + 'px'
       window.requestAnimationFrame(changeW)
     }
     window.requestAnimationFrame(changeW)
