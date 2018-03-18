@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>requestAnimate</title>
+  <style>
+    #demo {
+      border: 1px solid #000;
+      width: 0;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div id="demo"></div>
+  <script>
+    let a = 0;
+    const demo = document.getElementById('demo')
+    function changeW() {
+      a += 10
+      demo.style.width = a + 'px'
+      if (a > 1000) {
+        a = 0
+      }
+      window.requestAnimationFrame(changeW)
+    }
+    window.requestAnimationFrame(changeW)
+  </script>
+</body>
+</html>
